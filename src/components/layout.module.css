@@ -1,0 +1,24 @@
+.container {
+  margin: auto;
+  max-width: 500px;
+  margin-top: 50px;
+}
+
+.navigation ul {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+
+.navigation ul li a {
+  text-decoration: none;
+  font-size: 1.2rem;
+}
+
+.pageTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 1rem 0;
+  background-color: #c7a751;
+  padding: 1rem;
+}
