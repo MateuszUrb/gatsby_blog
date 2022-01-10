@@ -1,0 +1,14 @@
+.blogPosts {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.blogPosts article {
+  transition: all 0.3s ease-in-out;
+  padding: 1rem;
+}
+
+.blogPosts > article:hover {
+  background-color: #c7a751;
+}
