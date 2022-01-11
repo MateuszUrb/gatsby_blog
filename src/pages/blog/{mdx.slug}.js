@@ -2,12 +2,21 @@ import React from "react";
 import Layout from "../../components/layout";
 import { graphql } from "gatsby";
 import { MDXRenderer } from "gatsby-plugin-mdx";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 const BlogPost = ({ data }) => {
   const { title, date } = data.mdx.frontmatter;
+  const image = getImage(data.mdx.frontmatter.hero_image);
   return (
     <Layout pageTitle={title}>
-      <p>{date}</p>
+      <p>Posted: {date}</p>
+      <GatsbyImage image={image} alt={data.mdx.frontmatter.hero_image_alt} />
+      <p>
+        Photo Credit:{" "}
+        <a href={data.mdx.frontmatter.hero_image_credit_link}>
+          {data.mdx.frontmatter.hero_image_credit_text}
+        </a>
+      </p>
       <MDXRenderer>{data.mdx.body}</MDXRenderer>
     </Layout>
   );
@@ -16,11 +25,19 @@ const BlogPost = ({ data }) => {
 export const query = graphql`
   query ($id: String) {
     mdx(id: { eq: $id }) {
+      body
       frontmatter {
         title
-        date(formatString: "MMMM D, YYYY")
+        date(formatString: "MMMM DD, YYYY")
+        hero_image_alt
+        hero_image_credit_link
+        hero_image_credit_text
+        hero_image {
+          childImageSharp {
+            gatsbyImageData
+          }
+        }
       }
-      body
     }
   }
 `;
